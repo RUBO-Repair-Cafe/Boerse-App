@@ -1,0 +1,7 @@
+{
+  "name": "repaircafeboerseapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
