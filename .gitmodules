@@ -1,3 +1,4 @@
 [submodule "src/shared"]
 	path = src/shared
 	url = https://github.com/RUBO-Repair-Cafe/Boerse-Shared
+	branch = dev
