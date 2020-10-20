@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1059956549943",
+    "firebase_url": "https://rubo-boerse.firebaseio.com",
+    "project_id": "rubo-boerse",
+    "storage_bucket": "rubo-boerse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059956549943:android:ecda490f2746a7290c52b2",
+        "android_client_info": {
+          "package_name": "org.datenlotse.boerse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059956549943-nshuj737rb0om2o4cn7josq8oetmlnpb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEaR-I6XF_Z1ypj9_UDg_Fx5XgrE1iZI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059956549943-nshuj737rb0om2o4cn7josq8oetmlnpb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

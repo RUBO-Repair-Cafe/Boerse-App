@@ -15,26 +15,38 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-grid>
+  <ion-grid>
 
-      <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label position="floating">Username</ion-label>
-            <ion-input type="text" ></ion-input>
-          </ion-item>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="loginForm" *ngIf="loginForm && init">
+          <rubo-input type="email" formControlName="email">Email</rubo-input>
+          <div class="errors" *ngIf="loginForm.get('email').dirty">
+            <span *ngIf="loginForm.get('email').hasError('required')">
+              <ion-icon name="alert-circle-outline"></ion-icon>
+              Email required
+            </span>
+            <span *ngIf="loginForm.get('email').hasError('email') && !loginForm.get('email').hasError('required')">
+              <ion-icon name="alert-circle-outline"></ion-icon>
+              Not a valid email
+            </span>
+          </div>
 
-          <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" ></ion-input>
-          </ion-item>
+          <rubo-input type="password" formControlName="password">Password</rubo-input>
+          <div class="errors" *ngIf="loginForm.get('password').dirty">
+            <span *ngIf="loginForm.get('password').hasError('required')">
+              <ion-icon name="alert-circle-outline"></ion-icon>
+              Password required
+            </span>
+          </div>
 
           <ion-row class="ion-justify-content-end ion-padding-top">
-            <ion-button fill="clear">Login</ion-button>
+            <ion-button fill="clear" (click)="onLogin()">Login</ion-button>
           </ion-row>
 
-        </ion-col>
-      </ion-row>
+        </form>
+      </ion-col>
+    </ion-row>
 
-    </ion-grid>
+  </ion-grid>
 </ion-content>

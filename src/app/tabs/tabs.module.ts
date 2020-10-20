@@ -9,7 +9,8 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 import { TabsPage } from './tabs.page';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { RegisterModalComponent } from './register-modal/register-modal.component';
-import { AuthModule } from '../auth/auth.module';
+import { ComponentsModule } from '../components/components.module';
+import { ListingComponent } from './listing/listing.component';
 
 @NgModule({
   imports: [
@@ -18,8 +19,9 @@ import { AuthModule } from '../auth/auth.module';
     IonicModule,
     TabsPageRoutingModule,
     ReactiveFormsModule,
-    AuthModule
+    ComponentsModule
   ],
-  declarations: [TabsPage, LoginModalComponent, RegisterModalComponent]
+  declarations: [TabsPage, LoginModalComponent, RegisterModalComponent, ListingComponent],
+  exports: [TabsPage]
 })
 export class TabsPageModule {}

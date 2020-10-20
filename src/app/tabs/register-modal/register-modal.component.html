@@ -14,34 +14,66 @@
 
       <ion-row>
         <ion-col>
-          <form>
-            <ion-item class="required">
-              <ion-label position="floating">E-Mail</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+          <form [formGroup]="registrationForm" *ngIf="registrationForm">
 
-            <ion-item class="required">
-              <ion-label position="floating">Password</ion-label>
-              <ion-input type="password"></ion-input>
-            </ion-item>
+            <rubo-input type="email" formControlName="email">E-Mail</rubo-input>
+            <div class="errors" *ngIf="registrationForm.get('email').dirty">
+              <span *ngIf="registrationForm.get('email').hasError('required')">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Email required
+              </span>
+              <span *ngIf="registrationForm.get('email').hasError('email') && !registrationForm.get('email').hasError('required')">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Not a valid email
+              </span>
+            </div>
 
-            <ion-item class="required">
-              <ion-label position="floating">Firstname</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+            <rubo-input type="password" formControlName="password">Password</rubo-input>
+            <div class="errors" *ngIf="registrationForm.get('password').dirty">
+              <span *ngIf="registrationForm.get('password').hasError('required')">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Password required
+              </span>
+            </div>
 
-            <ion-item class="required">
-              <ion-label position="floating">Name</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+            <rubo-input type="password" formControlName="confirmPassword">Confirm Password</rubo-input>
+            <div class="errors" *ngIf="registrationForm.get('confirmPassword').dirty">
+              <span *ngIf="registrationForm.get('confirmPassword').hasError('required')">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Confirm Password required
+              </span>
+              <span *ngIf="registrationForm.get('confirmPassword').hasError('mismatch')">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Passwords dont match
+              </span>
+            </div>
 
-            <ion-item>
-              <ion-label position="floating">Phone Number</ion-label>
-              <ion-input type="tel"></ion-input>
-            </ion-item>
+            <rubo-input type="text" formControlName="firstName">Firstname</rubo-input>
+            <div class="errors" *ngIf="registrationForm.get('firstName').dirty">
+              <span *ngIf="registrationForm.get('firstName').hasError('required')">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Firstname required
+              </span>
+            </div>
+
+            <rubo-input type="text" formControlName="name">Name</rubo-input>
+            <div class="errors" *ngIf="registrationForm.get('name').dirty">
+              <span *ngIf="registrationForm.get('name').hasError('required')">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Name required
+              </span>
+            </div>
+
+            <rubo-input type="tel" formControlName="phoneNumber">Phone Number</rubo-input>
+            <div class="errors" *ngIf="registrationForm.get('phoneNumber').dirty">
+              <span *ngIf="registrationForm.get('phoneNumber').hasError('phone')">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Invalid phone number
+              </span>
+            </div>
 
             <ion-row class="ion-justify-content-end ion-padding-top">
-              <ion-button fill="clear">Register</ion-button>
+              <ion-button fill="clear" (click)="onRegister()" [disabled]="!registrationForm.valid">Register</ion-button>
             </ion-row>
           </form>
 

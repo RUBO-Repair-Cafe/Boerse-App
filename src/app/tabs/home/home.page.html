@@ -1,9 +1,28 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
     <ion-title>RUBO Boerse</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onLogin()" *ngIf="!isLoggedIn">Login</ion-button>
+      <ion-button (click)="onAdd()" *ngIf="isLoggedIn"><ion-icon name="add-outline" slot="icon-only"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
+  <ion-searchbar inputmode="search" enterkeyhint="search" (ionChange)="search($event)"></ion-searchbar>
+
+  <ion-refresher slot="fixed" [pullMin]="1" (ionRefresh)="onRefresh($event)" disabled="false">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <h4 class="ion-padding-horizontal" *ngIf="!isFiltered">Latest Listings</h4>
+  <h4 class="ion-padding-horizontal" *ngIf="isFiltered">Results</h4>
+
+  <rubo-listing-preview *ngFor="let listing of filteredListings" [listingData]="listing"></rubo-listing-preview>
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>

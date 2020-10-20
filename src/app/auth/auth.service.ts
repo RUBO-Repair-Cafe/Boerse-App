@@ -6,6 +6,7 @@ import { IOwnUser } from 'src/shared/interfaces/user/ownUser.interface';
 import { map } from 'rxjs/operators';
 import { ILoginRequest } from 'src/shared/interfaces/auth/loginRequest.interface';
 import { ILoginResponse } from 'src/shared/interfaces/auth/loginResponse.interface';
+import jwtDecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
 
   private _accessToken: string;
   private _refreshToken: string;
+  private _tokenExpiresAt: number;
 
   constructor(
     private readonly _http: HttpClient
@@ -32,13 +34,25 @@ export class AuthService {
   }
 
   async loginUser(loginData: ILoginRequest): Promise<ILoginResponse>{
-    return this._http.post<ILoginResponse>(`${environment.apiUrl}/auth/login`, loginData)
-    .pipe(map((loginResponse: ILoginResponse) => {
-      this._accessToken = loginResponse.access_token;
-      this._refreshToken = loginResponse.refresh_token;
-      return loginResponse;
-    }))
-    .toPromise();
+    const loginResponse = await this._http.post<ILoginResponse>(`${environment.apiUrl}/auth/login`, loginData).toPromise()
+    this._accessToken = loginResponse.access_token;
+    this._refreshToken = loginResponse.refresh_token;
+    const token = jwtDecode(loginResponse.access_token);
+    this._tokenExpiresAt = token.exp;
+
+    return loginResponse;
+  }
+
+  async refreshExpiredToken(): Promise<ILoginResponse>{
+    return this._http.get<ILoginResponse>(``)
+      .pipe(map((loginResponse: ILoginResponse) => {
+        this._accessToken = loginResponse.access_token;
+        this._refreshToken = loginResponse.refresh_token;
+        let token = jwtDecode(this.accessToken);
+        this._tokenExpiresAt = token.exp;
+        return loginResponse;
+      }))
+      .toPromise();
   }
 
   get accessToken(): string{
@@ -47,5 +61,13 @@ export class AuthService {
 
   get refreshToken(): string {
     return this._refreshToken;
+  }
+
+  get tokenExpiresAt(): number {
+    return this._tokenExpiresAt;
+  }
+
+  get isLoggedIn(): boolean{
+    return (this._accessToken && this._accessToken.length > 0) ? true : false
   }
 }

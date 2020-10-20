@@ -1,0 +1,4 @@
+<div class="input-wrapper" [ngClass]="{ios: isIOS}">
+  <input [type]="type" placeholder=" " [(ngModel)]="inputValue" (ngModelChange)="onInputChange()">
+  <label><ng-content></ng-content></label>
+</div>

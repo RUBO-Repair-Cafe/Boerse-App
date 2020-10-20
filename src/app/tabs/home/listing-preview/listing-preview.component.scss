@@ -1,0 +1,19 @@
+div.date {
+  color: #666666;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  vertical-align: middle;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 0px;
+
+  span.date{
+    margin-left: 5px;
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "repaircafeboerseapp",
+  "appId": "org.datenlotse.boerse",
+  "appName": "RUBO Boerse",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

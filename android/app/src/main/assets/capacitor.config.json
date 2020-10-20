@@ -1,0 +1,17 @@
+{
+  "appId": "org.datenlotse.boerse",
+  "appName": "RUBO Boerse",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "server": {
+    "url": "http://192.168.178.58:8100",
+    "cleartext": true
+  }
+}

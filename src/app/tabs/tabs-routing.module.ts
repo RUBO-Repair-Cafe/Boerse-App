@@ -18,14 +18,27 @@ const routes: Routes = [
       },
       {
         path: 'search',
-        loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+        loadChildren: () => import('./own-listings/own-listings.module').then( m => m.SearchPageModule)
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+      },
+      {
+        path: 'favorites',
+        loadChildren: () => import('./favorites/favorites.module').then( m => m.FavoritesPageModule)
+      },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
       }
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    redirectTo: 'tabs/home'
   }
 ];
 

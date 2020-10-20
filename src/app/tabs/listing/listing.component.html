@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="listingData">{{listingData.title}}</ion-title>
+    <ion-title *ngIf="!listingData">Loading...</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="closeModal()">
+        Close
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button (click)="setBookmark(true)" *ngIf="!isBookmarked">
+        <ion-icon slot="icon-only" name="bookmark-outline" ></ion-icon>
+      </ion-button>
+      <ion-button (click)="setBookmark(false)" *ngIf="isBookmarked">
+        <ion-icon slot="icon-only" name="bookmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="listingData">
+  <ion-grid class="ion-padding">
+
+    <ion-slides pager="true">
+      <ion-slide>
+        <img src="http://localhost:3000/assets/mac.jpg">
+      </ion-slide>
+      <ion-slide>
+        <img src="http://localhost:3000/assets/mac2.jpg">
+      </ion-slide>
+    </ion-slides>
+    <div class="date">
+      <ion-icon name="calendar-outline"></ion-icon><span class="date">{{convertDate(listingData.creationDate)}}</span>
+    </div>
+    <p class="price">{{listingData.price || '-'}}</p>
+    <p class="title">{{listingData.title || '-'}}</p>
+    <p class="body">{{listingData.text || '-'}}</p>
+    <ion-row>
+      <ion-button class="contact-button">Contact seller</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>
